@@ -10,7 +10,7 @@ interface Params {
 }
 
 interface Properties {
-  stream: EventStream<any, Params>;
+  stream: EventStream<Params>;
 }
 
 interface Context {
@@ -42,8 +42,8 @@ export default class SynthControl extends Dryad<Properties> {
         if (properties.stream) {
           const subscription = properties.stream.subscribe(event => {
             // This assumes a Bacon event.
-            // Should validate that event.value is object
-            const msg = nodeSet(context.nodeID || -1, event.value());
+            // Should validate that (event as any).value is object
+            const msg = nodeSet(context.nodeID || -1, (event as any).value);
             player.callCommand(context.id, {
               scserver: {
                 bundle: {

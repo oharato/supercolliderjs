@@ -19,9 +19,9 @@
   "dependencies": {
     "@supercollider/logger": "^1.0.0",
     "@supercollider/osc": "^1.0.0",
-    "cuid": "^2.1.6",
-    "lodash": "^4.17.15",
-    "tslib": "1.10.0"
+    "cuid": "^3.0.0",
+    "lodash": "^4.17.23",
+    "tslib": "2.8.1"
   },
   "repository": {
     "type": "git",

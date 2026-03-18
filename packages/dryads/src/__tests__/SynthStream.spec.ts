@@ -5,7 +5,7 @@ import Server from "@supercollider/server";
 import SynthStream, { Event } from "../SynthStream";
 
 describe("SynthStream", function() {
-  const stream = new Bus<any, Event>();
+  const stream = new Bus<Event>();
   const properties = {
     stream,
   };

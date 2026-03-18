@@ -1,9 +1,10 @@
 {
-  "name": "@supercollider/logger",
+  "name": "@supercollider/synthdef",
   "version": "1.0.0",
-  "description": "Console logging utility for supercollider.js for debugging with color support and special formatting for OSC messages.",
+  "description": "TypeScript compiler for SuperCollider SynthDefs, bypassing sclang",
   "keywords": [
-    "supercollider"
+    "supercollider",
+    "synthdef"
   ],
   "author": "Chris Sattinger <crucialfelix@gmail.com>",
   "homepage": "https://crucialfelix.github.io/supercolliderjs/",
@@ -11,19 +12,26 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "directories": {
-    "lib": "./lib",
-    "src": "./src"
+    "lib": "lib"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "chalk": "^4.1.2",
+    "lodash": "^4.17.23",
     "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "5.9.3"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/crucialfelix/supercolliderjs.git"
+  },
+  "scripts": {
+    "build": "tsc -b .",
+    "test": "vitest run"
   },
   "bugs": {
     "url": "https://github.com/crucialfelix/supercolliderjs/issues"

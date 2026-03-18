@@ -20,7 +20,8 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "skipLibCheck": true
   },
   "references": [
     {
@@ -40,6 +41,9 @@
     },
     {
       "path": "scapi"
+    },
+    {
+      "path": "synthdef"
     }
   ],
   "exclude": ["**/__tests__", "**/node_modules", "**/lib"]

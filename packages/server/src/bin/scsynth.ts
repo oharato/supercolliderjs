@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint no-console: 0 */
-import program from "commander";
+import { program } from "commander";
 import { join } from "path";
 
 import Server, { ServerArgs } from "..";

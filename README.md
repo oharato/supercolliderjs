@@ -38,7 +38,7 @@ It consists of two parts:
 
 2. Install supercolliderjs:
 ```shell
-npm install supercolliderjs
+pnpm add supercolliderjs
 ```
 
 ## Examples
@@ -256,6 +256,26 @@ Contribute
 
 - Issue Tracker: https://github.com/crucialfelix/supercolliderjs/issues
 - Source Code: https://github.com/crucialfelix/supercolliderjs
+
+Development
+-----------
+
+We use modern web tooling for our development stack:
+- **pnpm** for workspace and package management
+- **Vitest** for fast and concurrent testing
+- **Oxlint** for ultra-fast code linting
+- **Vite** for optimized build processes
+- **TypeScript 5.9** for static type checking
+
+To get started with development:
+```bash
+git clone https://github.com/crucialfelix/supercolliderjs
+cd supercolliderjs
+pnpm install
+pnpm run build
+pnpm run test
+pnpm run lint
+```
 
 License
 -------

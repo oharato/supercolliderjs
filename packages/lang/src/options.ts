@@ -32,11 +32,11 @@ export interface SCLangOptions {
   conf: SCLangConf;
 }
 
-function loadConfig(aPath: string): Partial<SCLangOptions> {
+function loadConfig(aPath: string): Partial<SCLangArgs> {
   try {
-    return yaml.safeLoad(fs.readFileSync(aPath, "utf8"));
+    return yaml.load(fs.readFileSync(aPath, "utf8")) as Partial<SCLangArgs>;
   } catch (error) {
-    throw new Error(`Error reading config file ${aPath}: ${error.mesage} configPath: ${aPath}`);
+    throw new Error(`Error reading config file ${aPath}: ${(error as Error).message} configPath: ${aPath}`);
   }
 }
 

@@ -21,12 +21,12 @@
     "@supercollider/lang": "^1.0.1",
     "@supercollider/logger": "^1.0.0",
     "@supercollider/server": "^1.0.0",
-    "baconjs": "^0.7.93",
+    "baconjs": "^3.0.23",
     "dryadic": "^1.0.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.23"
   },
   "devDependencies": {
-    "@types/baconjs": "0.7.33"
+    "@types/baconjs": "3.0.4"
   },
   "repository": {
     "type": "git",

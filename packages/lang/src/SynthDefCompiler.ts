@@ -156,7 +156,7 @@ export default class SynthDefCompiler {
         const result: SclangResultType = await this.lang.interpret(wrappedCode, undefined, false, false, true);
         // force casting it to the expected type
         return (result as unknown) as SynthDefResultType;
-      } catch (error) {
+      } catch (error: any) {
         error.annotate(`Failed to compile SynthDef  ${error.message} ${pathName || ""}`, {
           sourceCode,
         });

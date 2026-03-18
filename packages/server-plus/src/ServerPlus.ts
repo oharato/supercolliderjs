@@ -283,7 +283,7 @@ export default class ServerPlus extends Server {
       const defsMap = await compiling;
       const result: SynthDefResultType = defsMap[name];
       if (!result) {
-        new Error(`${name} not found in compiled SynthDefs`);
+        throw new Error(`${name} not found in compiled SynthDefs`);
       }
       const sourceCode = result.synthDesc.sourceCode;
 

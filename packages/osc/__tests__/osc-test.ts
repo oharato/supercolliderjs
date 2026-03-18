@@ -11,7 +11,7 @@ const msg = {
 
 const msg2 = {
   address: "/address",
-  args: [0.1, 0.2],
+  args: [0.5, 0.25],
   oscType: "message",
 };
 

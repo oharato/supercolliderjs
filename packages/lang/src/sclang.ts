@@ -111,7 +111,7 @@ export default class SCLang extends EventEmitter {
       write options as yaml to a temp file
       and return the path
     **/
-    const str = yaml.safeDump(conf, { indent: 4 });
+    const str = yaml.dump(conf, { indent: 4 });
     return new Promise((resolve, reject) => {
       temp.open("sclang-conf", function(err, info) {
         if (err) {
@@ -264,7 +264,7 @@ export default class SCLang extends EventEmitter {
 
     if (options.sclang_conf) {
       try {
-        conf = yaml.safeLoad(fs.readFileSync(untildify(options.sclang_conf), "utf8"));
+        conf = yaml.load(fs.readFileSync(untildify(options.sclang_conf), "utf8")) as any;
       } catch (e) {
         // By default allow a missing sclang_conf file
         // so that the language can create it on demand if you use Quarks or LanguageConfig.
@@ -306,7 +306,7 @@ export default class SCLang extends EventEmitter {
       process.stdin.setEncoding("utf8");
       process.stdin.on("data", chunk => {
         if (chunk) {
-          this.write(chunk, true);
+          this.write(chunk.toString(), true);
         }
       });
     }
@@ -357,10 +357,10 @@ export default class SCLang extends EventEmitter {
     }
     this.log.dbug(chunk);
     if (this.process && this.process.stdin) {
-      this.process.stdin.write(chunk, "UTF-8");
+      this.process.stdin.write(chunk, "utf8");
       // Send the escape character which is interpreted by sclang as:
       // "evaluate the currently accumulated command line as SC code"
-      this.process.stdin.write("\x0c", "UTF-8", error => error && this.log.err(error));
+      this.process.stdin.write("\x0c", "utf8", error => error && this.log.err(error));
     }
   }
 

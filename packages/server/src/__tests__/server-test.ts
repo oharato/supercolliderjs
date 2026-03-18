@@ -17,7 +17,7 @@ describe("Server", function() {
       const two = "rver ready.";
 
       const server = new Server();
-      spyOn(server, "_spawnProcess").and.returnValue(null);
+      jest.spyOn(server, "_spawnProcess").mockReturnValue(null as any);
       // make a fake this.process.stdout / stderr
       server.process = {
         stdout: new EventEmitter(),

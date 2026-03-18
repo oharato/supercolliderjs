@@ -79,7 +79,7 @@ describe("sclang", function() {
     it("should call spawnProcess", function() {
       const sclang = new SCLang();
       const SPAWNED = "SPAWNED";
-      spyOn(sclang, "spawnProcess").and.returnValue(SPAWNED);
+      jest.spyOn(sclang, "spawnProcess").mockReturnValue(SPAWNED as any);
       return sclang
         .boot()
         .then(result => expect(result).toEqual(SPAWNED))
@@ -161,10 +161,11 @@ describe("sclang", function() {
     // mock spawn to return an event emitter
     it("should spawnProcess", function() {
       const sclang = new SCLang();
-      spyOn(sclang, "_spawnProcess").and.returnValue({
+      jest.spyOn(sclang, "_spawnProcess").mockReturnValue({
         pid: 1,
-      });
-      spyOn(sclang, "installListeners");
+        on: () => {},
+      } as any);
+      jest.spyOn(sclang, "installListeners");
       const promise = sclang.spawnProcess("/tmp/fake/path", {});
       expect(promise).toBeTruthy();
     });
@@ -173,7 +174,7 @@ describe("sclang", function() {
   describe("interpret", function() {
     it("should call this.write", function() {
       const sclang = new SCLang();
-      spyOn(sclang, "write").and.returnValue(null);
+      jest.spyOn(sclang, "write").mockReturnValue(null as any);
       sclang.interpret("1 + 1", "/tmp/source.scd");
       expect(sclang.write).toHaveBeenCalled();
     });
@@ -182,7 +183,7 @@ describe("sclang", function() {
   describe("executeFile", function() {
     it("should call this.write", function() {
       const sclang = new SCLang();
-      spyOn(sclang, "write").and.returnValue(null);
+      jest.spyOn(sclang, "write").mockReturnValue(null as any);
       sclang.executeFile("/tmp/source.scd");
       expect(sclang.write).toHaveBeenCalled();
     });
@@ -198,7 +199,7 @@ describe("sclang", function() {
       const sclang = new SCLang();
       const process = new MockProcess();
       sclang.process = process as ChildProcess;
-      spyOn(sclang.process, "kill").and.returnValue(null);
+      jest.spyOn(sclang.process, "kill").mockReturnValue(null as any);
       const p = sclang.quit().then(() => {
         expect(sclang.process).toEqual(undefined);
       });

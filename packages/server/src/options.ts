@@ -199,9 +199,9 @@ export const defaults: ServerOptions = {
 
 function loadConfig(aPath: string): Partial<ServerArgs> {
   try {
-    return yaml.safeLoad(fs.readFileSync(aPath, "utf8"));
+    return yaml.load(fs.readFileSync(aPath, "utf8")) as Partial<ServerArgs>;
   } catch (error) {
-    throw new Error(`Error reading config file ${aPath}: ${error.mesage} configPath: ${aPath}`);
+    throw new Error(`Error reading config file ${aPath}: ${(error as Error).message} configPath: ${aPath}`);
   }
 }
 

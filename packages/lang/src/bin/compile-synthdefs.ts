@@ -2,7 +2,7 @@
 /* eslint no-console: 0 */
 import path from "path";
 import { boot } from "../index";
-import program from "commander";
+import { program } from "commander";
 import { promises as fs } from "fs";
 import { JSONObjectType } from "@supercollider/server";
 

@@ -49,14 +49,17 @@ export function allocBlock(state: BlockMapType, blockSize: number): [number, Blo
       const size = parseInt(sizeKey, 10);
       if (size >= blockSize) {
         const blocks = state.get(sizeKey);
-        if (blocks.size) {
+        if (blocks && blocks.size) {
           if (size === blockSize) {
             // pop the last free one
-            ret = [blocks.last(), state.set(sizeKey, blocks.butLast().toList())];
+            const lastBlock = blocks.last();
+            if (lastBlock === undefined) throw new Error("Block undefined");
+            ret = [lastBlock, state.set(sizeKey, blocks.butLast().toList())];
             return false; // break
           } else {
             // its larger, split off what you need
             const lastBlock = blocks.last();
+            if (lastBlock === undefined) throw new Error("Block undefined");
             ret = [lastBlock, splitFreeBlock(state, lastBlock, size, lastBlock, blockSize)];
             return false; // break
           }

@@ -14,7 +14,7 @@ interface Params {
 }
 
 interface Properties {
-  stream: EventStream<any, Event>;
+  stream: EventStream<Event>;
   defaultParams?: Params;
 }
 
@@ -79,10 +79,10 @@ export default class SynthStream extends Dryad<Properties> {
       run: (context: Context, properties: Properties) => {
         const subscription = properties.stream.subscribe(event => {
           // This assumes a Bacon event.
-          // Should validate that event.value is object
+          // Should validate that (event as any).value is object
           // assumes context has not been updated and is the same event
           // use player.getContext()
-          this.handleEvent(event.value(), context, properties, player);
+          this.handleEvent((event as any).value, context, properties, player);
         });
         player.updateContext(context, { subscription });
       },

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* eslint no-console: 0 */
 import { resolveOptions } from "@supercollider/server";
-import program from "commander";
+import { program } from "commander";
 import { promises as fs } from "fs";
 import { ncp } from "ncp";
 import path from "path";
@@ -16,7 +16,7 @@ const pkg = require(path.join(__dirname, "../../package.json"));
 async function makeDir(dest: string): Promise<void> {
   try {
     await fs.mkdir(dest);
-  } catch (error) {
+  } catch (error: any) {
     if (error.code !== "EEXIST") {
       throw error;
     }

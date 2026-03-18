@@ -149,7 +149,7 @@ export function resolveFuncs(command: Command, context: Context, properties: Pro
  * @private
  */
 function _callIfFn<T = any>(thing: T | Function, context: Context, properties: Properties): T {
-  return _.isFunction(thing) ? thing(context, properties) : thing;
+  return _.isFunction(thing) ? thing(context, properties) : (thing as T);
 }
 
 // T | (context: Context, properties: Properties) => T;

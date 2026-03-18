@@ -1,4 +1,4 @@
-import Bacon from "baconjs";
+import { Bus } from "baconjs";
 import _ from "lodash";
 
 import SynthEventList from "../SynthEventList";
@@ -51,7 +51,7 @@ describe("SynthEventList", function() {
   describe("pass in updateStream", function() {
     let bus, sel: SynthEventList, dp, updated, called, properties;
     beforeEach(function() {
-      bus = new Bacon.Bus();
+      bus = new Bus();
       properties = { updateStream: bus };
       sel = new SynthEventList(properties);
 
@@ -66,7 +66,7 @@ describe("SynthEventList", function() {
     });
 
     it("should subscribe to stream on .add", function() {
-      spyOn(player, "updateContext");
+      jest.spyOn(player, "updateContext");
 
       const commands = sel.add(dp);
       if (commands.run) {
@@ -78,7 +78,7 @@ describe("SynthEventList", function() {
     });
 
     it("should get a new event when pushed to bus", function() {
-      spyOn(player, "callCommand");
+      jest.spyOn(player, "callCommand");
       const commands = sel.add(dp);
       if (commands.run) {
         commands.run(context, properties);

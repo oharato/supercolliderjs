@@ -122,7 +122,7 @@ export default class SynthEventList extends Dryad<Properties> {
       commands = _.assign(commands, {
         run: (context: Context, properties: Properties) => {
           const subscription = properties.updateStream.subscribe(streamEvent => {
-            const ee = streamEvent.value();
+            const ee = (streamEvent as any).value;
             const loopTime = _.isUndefined(ee.loopTime) ? properties.loopTime : ee.loopTime;
             const epoch = ee.epoch || context.epoch || _.now() + 200;
             if (epoch !== context.epoch) {
